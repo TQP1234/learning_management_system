@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block additional_libraries %}
+
+<!-- Custom styles for this page -->
+<link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-xl-6 col-md-6 mb-4">
+            <form id="viewCourseForm" method="POST" class="d-flex align-items-center">
+                <select name="course" id="course" class="form-select w-auto" style="margin-right: 0.5rem;">
+                    <option value="" disabled selected hidden>Select a course to view...</option>
+                    {% for username, course in courses %}
+                    <option value="{{ username }};{{ course }}">
+                        {{ course }} ({{ username }})
+                    </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm px-3">View</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Display user's information -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid blue;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2">
+                                <span style="font-size: x-large;">Welcome</span> <span
+                                    style="color: blue; font-size: x-large;">{{ username }}</span><span
+                                    style="font-size: x-large;">,</span>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: large;">
+                                You are viewing: <span style="color: blue;">{{ course_name }}</span><br>
+                                Instructor: <span style="color: blue;">{{ instructor_name }}</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-handshake-o fa-2x" style="color: blue;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display number of active students -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid purple;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2">
+                                <span style="color: purple; font-size: x-large;">{{ num_of_students }}</span>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: large;">
+                                Active Student(s)
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-group fa-2x" style="color: purple;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Display number of topics posted by user -->
+        <div class="col-xl-2 col-md-2 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid green;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2"
+                                style="color: green; font-size: x-large;">
+                                {{ num_of_topics }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                Topic(s)
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope-open fa-2x" style="color: green;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display number of entries -->
+        <div class="col-xl-2 col-md-2 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid goldenrod;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-2"
+                                    style="color: goldenrod; font-size: x-large;">
+                                    {{ num_of_entries }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                    Entries
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bookmark fa-2x" style="color: goldenrod;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display the hottest topic -->
+        <div class="col-xl-2 col-md-2 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid red;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2"
+                                style="color: red; font-size: x-large;">
+                                {{ hottest_topic }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                Most Popular Topic
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-fire fa-2x" style="color: red;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display number of participating students -->
+        <div class="col-xl-3 col-md-3 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid orchid;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2"
+                                style="color: orchid; font-size: x-large;">
+                                {{ num_of_students_posting }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                Student(s) had posted at least one entry
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comment fa-2x" style="color: orchid;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display the participating rate -->
+        <div class="col-xl-3 col-md-3 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid gray;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-2"
+                                style="color: gray; font-size: x-large;">
+                                {{ participation_rate }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                Participation Rate
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-child fa-2x" style="color: gray;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-7 col-md-7 mb-4">
+            <!-- Topic Table -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Topic Table</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="topicTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>topic_id</th>
+                                    <th>topic_title</th>
+                                    <th>topic_content</th>
+                                    <th>topic_created_at</th>
+                                    <th>number_of_entries</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for topic in topic_table %}
+                                <tr>
+                                    <td>{{ topic.topic_id }}</td>
+                                    <td>{{ topic.topic_title }}</td>
+                                    <td>{{ topic.topic_content }}</td>
+                                    <td>{{ topic.topic_created_at }}</td>
+                                    <td>{{ topic.number_of_entries }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-5 col-md-5 mb-4">
+            <!-- Entries Table -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Entries Table</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="entriesTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>student</th>
+                                    <th>entries</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entries in entries_table %}
+                                <tr>
+                                    <td>{{ entries.student }}</td>
+                                    <td>{{ entries.entries }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<script>
+    const form = document.getElementById('viewCourseForm');
+    form.addEventListener('submit', function (e) {
+        const select = form.querySelector('#course');
+        if (!select.value) {  // empty string means placeholder
+            e.preventDefault();
+        }
+    });
+</script>
+
+<script>
+    var lengthMenu = {{ length_menu | tojson }};
+
+    // Call the dataTables jQuery plugin
+    $(document).ready(function () {
+        $('#topicTable').DataTable({
+            "lengthMenu": [lengthMenu, lengthMenu],
+            "order": [[4, 'dsc']],
+        });
+    });
+
+    // Call the dataTables jQuery plugin
+    $(document).ready(function () {
+        $('#entriesTable').DataTable({
+            "lengthMenu": [lengthMenu, lengthMenu],
+            "order": [[1, 'dsc']],
+        });
+    });
+</script>
+
+<script>
+    // initialize active status
+    document.getElementById('dashboard-sidebar').classList.add('active');
+</script>
+
+{% endblock %}

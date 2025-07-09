@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet"> -->
+
+    <link href="{{ url_for('static', filename='fonts/icomoon/style.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Style -->
+    <link href="{{ url_for('static', filename='login_page/style.css') }}" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+        type="text/css">
+    <!-- <link href="{{ url_for('static', filename='google_fonts/google_fonts.css') }}" rel="stylesheet" type="text/css"> -->
+
+    <!-- SB Admin CSS -->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/font-awesome.min.css') }}" />
+
+    <title>Learning Management System</title>
+</head>
+
+<body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" , role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span arial-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" , role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span arial-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='images/undraw_remotely_2j6y.svg') }}" alt="Image"
+                        class="img-fluid">
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h3>Sign In</h3>
+                                <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
+                                    adipisicing.</p> -->
+                            </div>
+                            <form action="#" method="POST">
+
+                                <div class="form-group first mb-1">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username">
+
+                                </div>
+                                <div class="form-group last mb-4">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+
+                                </div>
+
+                                <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Remember
+                                            me</span>
+                                        <input type="checkbox" name="remember" checked="checked" />
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                </div>
+
+                                <!-- <input type="submit" value="Log In" class="btn btn-block btn-primary"> -->
+                                <div class="d-flex mb-5 align-items-center justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- CSS -->
+    <style>
+        .modal-header {
+            background-color: #4e73df;
+            /* SB Admin 2 primary color */
+            color: white;
+            /* Makes the header stick to the top */
+            position: sticky;
+            /* Sticks it to the top of the modal */
+            top: 0;
+            /* Ensure it stays above other content */
+            z-index: 1050;
+        }
+
+        .modal-title {
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-control {
+            border-radius: 0.35rem;
+            /* Consistent with SB Admin 2 */
+        }
+
+        .btn-primary {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            border-color: #2653d4;
+            /* Darker shade on hover */
+        }
+
+        .close {
+            color: white;
+        }
+
+        .table {
+            width: 100%;
+            /* Ensure the table takes full width */
+        }
+
+        .table-responsive {
+            max-height: 400px;
+            /* Set a max height if desired */
+            overflow-y: auto;
+            /* Allow vertical scrolling */
+        }
+
+        .scrollable-modal-body {
+            max-height: 400px;
+            /* Adjust the height as needed */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
+
+        .modal-content {
+            max-height: 90vh;
+            /* Adjust height to your preference */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
+    </style>
+
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/third_party_scripts/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/bootstrap.min.js') }}"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            'use strict';
+
+            $('.form-control').on('input', function () {
+                var $field = $(this).closest('.form-group');
+                if (this.value) {
+                    $field.addClass('field--not-empty');
+                } else {
+                    $field.removeClass('field--not-empty');
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

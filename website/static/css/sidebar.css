@@ -1,0 +1,43 @@
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 10px;
+    top: 60px;
+    left: 0;
+    width: 300px;
+    height: calc(100vh - 80px);
+    background-color: gainsboro;
+    border-right-style: solid;
+    position: fixed;
+    overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 20px;
+    font-size: 20px;
+    /* font-weight: bold; */
+    text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+    background-color: blue;
+    color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+    background-color: gray;
+    color: white;
+}
+
+/* sidebar content */
+.sidebar-content {
+    border-bottom-style: solid;
+    padding-bottom: 20px;
+    font-size: small;
+    text-align: center;
+}
