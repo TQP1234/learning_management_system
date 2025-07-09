@@ -23,7 +23,7 @@ cd learning_management_system
 3) Build the Docker image.
 
 ``` shell
-docker build -t learning_management-system .
+docker build -t learning_management_system .
 ```
 
 4) Run the Docker image.
