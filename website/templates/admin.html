@@ -16,7 +16,7 @@
 
         <div class="col-xl-6 col-md-6 mb-4">
             <form id="viewCourseForm" method="POST" class="d-flex align-items-center">
-                <select name="course" id="course" class="form-select w-auto" style="margin-right: 0.5rem;">
+                <select name="course" id="course" class="form-select w-auto" style="margin-right: 0.5rem; font-size: small;">
                     <option value="" disabled selected hidden>Select a course to view...</option>
                     {% for username, course in courses %}
                     <option value="{{ username }};{{ course }}">
@@ -24,7 +24,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <button type="submit" class="btn btn-primary btn-sm px-3">View</button>
+                <button type="submit" class="btn btn-primary btn-sm px-3 py-1" style="font-size: x-small;">View</button>
             </form>
         </div>
 
@@ -40,11 +40,11 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2">
-                                <span style="font-size: x-large;">Welcome</span> <span
-                                    style="color: blue; font-size: x-large;">{{ username }}</span><span
-                                    style="font-size: x-large;">,</span>
+                                <span style="font-size: medium;">Welcome</span> <span
+                                    style="color: blue; font-size: medium;">{{ username }}</span><span
+                                    style="font-size: medium;">,</span>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: large;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 You are viewing: <span style="color: blue;">{{ course_name }}</span><br>
                                 Instructor: <span style="color: blue;">{{ instructor_name }}</span>
                             </div>
@@ -64,9 +64,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2">
-                                <span style="color: purple; font-size: x-large;">{{ num_of_students }}</span>
+                                <span style="color: purple; font-size: medium;">{{ num_of_students }}</span>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: large;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 Active Student(s)
                             </div>
                         </div>
@@ -90,9 +90,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2"
-                                style="color: green; font-size: x-large;">
+                                style="color: green; font-size: medium;">
                                 {{ num_of_topics }}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 Topic(s)
                             </div>
                         </div>
@@ -112,9 +112,9 @@
                         <div class="col mr-2">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-2"
-                                    style="color: goldenrod; font-size: x-large;">
+                                    style="color: goldenrod; font-size: medium;">
                                     {{ num_of_entries }}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                     Entries
                                 </div>
                             </div>
@@ -134,9 +134,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2"
-                                style="color: red; font-size: x-large;">
+                                style="color: red; font-size: medium;">
                                 {{ hottest_topic }}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 Most Popular Topic
                             </div>
                         </div>
@@ -155,9 +155,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2"
-                                style="color: orchid; font-size: x-large;">
+                                style="color: orchid; font-size: medium;">
                                 {{ num_of_students_posting }}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 Student(s) had posted at least one entry
                             </div>
                         </div>
@@ -176,9 +176,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-2"
-                                style="color: gray; font-size: x-large;">
+                                style="color: gray; font-size: medium;">
                                 {{ participation_rate }}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: medium;">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: small;">
                                 Participation Rate
                             </div>
                         </div>
@@ -194,11 +194,11 @@
 
     <div class="row">
 
-        <div class="col-xl-7 col-md-7 mb-4">
+        <div class="col-xl-7 col-md-7 mb-4" style="font-size: small;">
             <!-- Topic Table -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Topic Table</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="font-size: small;">Topic Table</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -229,11 +229,11 @@
             </div>
         </div>
 
-        <div class="col-xl-5 col-md-5 mb-4">
+        <div class="col-xl-5 col-md-5 mb-4" style="font-size: small;">
             <!-- Entries Table -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Entries Table</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="font-size: small;">Entries Table</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
